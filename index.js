@@ -15,15 +15,14 @@ const homeController = require("./controllers/home");
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
-
 //users
 const newUserController = require('./controllers/newUser');
 const storeUserController = require('./controllers/storeUser');
-
 //login
 const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser'); 
 const logoutController = require('./controllers/logout');
+
 
 // const BlogPost = require('./models/BlogPost.js');
 
@@ -36,7 +35,7 @@ const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthen
 const app = new express();
 
 //CONNECT TO DATABASE
-mongoose.connect("mongodb://0.0.0.0:27017/blog_db", 
+mongoose.connect("mongodb+srv://bhabha:EOZVjdn6jSTqpUkj@nodejs-blogpostapp.wqao0.mongodb.net/blog_db/blog_db", 
 { useNewUrlParser: true}
 );
 
@@ -151,6 +150,7 @@ app.post('/posts/store', authMiddleware, storePostController);
 app.get("/contact", pagesController.contact);
 
 app.use((req, res) => res.render('notfound'));
+
 app.listen(4000, () => {
   console.log("App listening on port 4000");
 });
