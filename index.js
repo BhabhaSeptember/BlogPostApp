@@ -34,7 +34,7 @@ const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthen
 const app = new express();
 
 //CONNECT TO DATABASE
-mongoose.connect("mongodb+srv://bhabha:EOZVjdn6jSTqpUkj@nodejs-blogpostapp.wqao0.mongodb.net/blog_db/blog_db", 
+mongoose.connect("mongodb+srv://bhabha:EOZVjdn6jSTqpUkj@nodejs-blogpostapp.wqao0.mongodb.net/blog_db", 
 { useNewUrlParser: true}
 );
 
