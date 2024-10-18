@@ -3,8 +3,8 @@ const express = require("express");
 const path = require("path");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-
 const fileUpload = require('express-fileupload'); 
+
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 
@@ -15,9 +15,11 @@ const homeController = require("./controllers/home");
 const newPostController = require('./controllers/newPost');
 const getPostController = require('./controllers/getPost');
 const storePostController = require('./controllers/storePost');
+
 //users
 const newUserController = require('./controllers/newUser');
 const storeUserController = require('./controllers/storeUser');
+
 //login
 const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser'); 
@@ -33,8 +35,8 @@ const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthen
 //INITIALIZE EXPRESS APP
 const app = new express();
 
-//CONNECT TO DATABASE
-mongoose.connect("mongodb+srv://bhabha:EOZVjdn6jSTqpUkj@nodejs-blogpostapp.wqao0.mongodb.net/blog_db", 
+//CONNECT TO DATABASE  EOZVjdn6jSTqpUkj
+mongoose.connect("mongodb://0.0.0.0:27017/blog_db", 
 { useNewUrlParser: true}
 );
 
@@ -43,10 +45,10 @@ app.use(express.static("public"));
 app.use(express.json()); 
 app.use(express.urlencoded());
 app.use(fileUpload()); 
+
 app.use(expressSession({ 
   secret: 'keyboard cat' 
   }));
-
 
 // CUSTOM MIDDLEWARE
 // const customMiddleWare = (req,res,next)=>{ 
@@ -149,6 +151,14 @@ app.post('/posts/store', authMiddleware, storePostController);
 app.get("/contact", pagesController.contact);
 
 app.use((req, res) => res.render('notfound'));
-app.listen(4000, () => {
-  console.log("App listening on port 4000");
+
+
+// app.listen(4000, () => {
+//   console.log("App listening on port 4000");
+// });
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
 });
